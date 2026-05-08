@@ -8,7 +8,7 @@ public class ConexionBD {
     // Conexión a MySQL 8 para la BD Wwawalu
     private static final String URL = "jdbc:mysql://localhost:3306/Wwawalu";
     private static final String USER =  "root";
-    private static final String PASS = "root";
+    private static final String PASS = "";
 
     public static Connection getConexion() {
         Connection con = null;
