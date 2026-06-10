@@ -18,4 +18,7 @@ public class ProductoService {
     public boolean actualizarProducto(Producto p){
         return dao.actualizar(p);
     }
+    public boolean eliminarProducto(int id){
+        return dao.eliminar(id);
+    }
 }

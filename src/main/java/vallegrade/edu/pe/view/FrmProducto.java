@@ -10,36 +10,61 @@ import java.awt.*;
 import java.util.List;
 
 public class FrmProducto extends JFrame {
-
     public JTable tabla;
     private DefaultTableModel modelo;
+    private JLabel lblContador;
 
     public JButton btnAgregar = new JButton("Agregar");
     public JButton btnModificar = new JButton("Modificar");
+    public JButton btnEliminar = new JButton("Eliminar");
     public JButton btnActualizar = new JButton("Actualizar");
-    public JButton btnSalir = new JButton("Salir");
+    public JButton btnVolver = new JButton("Volver");
+    public JTextField txtBuscar = new JTextField(20);
+    public JButton btnBuscar = new JButton("🔍");
 
     public FrmProducto() {
-
         setTitle("Gestión de Productos");
         setSize(900, 500);
-
-        // IMPORTANTE
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // COLORES
-        Color azul = new Color(0, 102, 204);
-        Color azulOscuro = new Color(0, 51, 153);
-        Color rojo = new Color(220, 53, 69);
-        Color fondo = new Color(245, 245, 245);
+        // Configurar colores de botones
+        btnAgregar.setBackground(new Color(59, 130, 246)); // Azul
+        btnAgregar.setForeground(Color.WHITE);
+        btnAgregar.setFocusPainted(false);
+        btnAgregar.setOpaque(true);
 
-        // PANEL PRINCIPAL
-        JPanel panelPrincipal = new JPanel(new BorderLayout());
-        panelPrincipal.setBackground(fondo);
+        btnModificar.setBackground(new Color(34, 197, 94)); // Verde
+        btnModificar.setForeground(Color.WHITE);
+        btnModificar.setFocusPainted(false);
+        btnModificar.setOpaque(true);
 
-        // MODELO TABLA
+        btnEliminar.setBackground(new Color(239, 68, 68)); // Rojo
+        btnEliminar.setForeground(Color.WHITE);
+        btnEliminar.setFocusPainted(false);
+        btnEliminar.setOpaque(true);
+
+        btnActualizar.setBackground(new Color(250, 204, 21)); // Amarillo
+        btnActualizar.setForeground(Color.BLACK);
+        btnActualizar.setFocusPainted(false);
+        btnActualizar.setOpaque(true);
+
+        btnVolver.setBackground(new Color(107, 114, 128)); // Gris
+        btnVolver.setForeground(Color.WHITE);
+        btnVolver.setFocusPainted(false);
+        btnVolver.setOpaque(true);
+
+        // Configurar campo de búsqueda
+        txtBuscar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        txtBuscar.setToolTipText("Ingrese nombre o código para buscar");
+
+        btnBuscar.setBackground(new Color(59, 130, 246));
+        btnBuscar.setForeground(Color.WHITE);
+        btnBuscar.setFocusPainted(false);
+        btnBuscar.setOpaque(true);
+        btnBuscar.setPreferredSize(new Dimension(40, 30));
+
+        // Configurar tabla profesional
         modelo = new DefaultTableModel(new String[]{
                 "ID",
                 "Código",
@@ -48,92 +73,82 @@ public class FrmProducto extends JFrame {
                 "ID Categoría",
                 "Precio",
                 "Stock"
-        }, 0);
-
-        // TABLA
-        tabla = new JTable(modelo);
-
-        tabla.setRowHeight(25);
-        tabla.setFont(new Font("Arial", Font.PLAIN, 14));
-
-        // ENCABEZADO TABLA
-        JTableHeader header = tabla.getTableHeader();
-
-        header.setBackground(azulOscuro);
-        header.setForeground(Color.WHITE);
-        header.setFont(new Font("Arial", Font.BOLD, 14));
-
-        // SCROLL
-        JScrollPane scroll = new JScrollPane(tabla);
-
-        // PANEL BOTONES
-        JPanel panelBotones = new JPanel();
-        panelBotones.setBackground(fondo);
-
-        // ESTILO BOTONES
-        JButton[] botones = {
-                btnAgregar,
-                btnModificar,
-                btnActualizar
+        }, 0) {
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                if (columnIndex == 0) return Integer.class;
+                if (columnIndex == 5) return Double.class;
+                if (columnIndex == 6) return Integer.class;
+                return String.class;
+            }
+            
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
         };
+        
+        tabla = new JTable(modelo);
+        tabla.setRowHeight(25);
+        tabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        tabla.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+        tabla.setFont(new Font("Segoe UI", Font.PLAIN, 11));
+        tabla.setShowGrid(true);
+        tabla.setGridColor(new Color(230, 230, 230));
+        
+        // Configurar encabezado
+        JTableHeader header = tabla.getTableHeader();
+        header.setBackground(new Color(30, 58, 138)); // Azul oscuro
+        header.setForeground(Color.WHITE); // Texto blanco
+        header.setReorderingAllowed(false);
 
-        for (JButton boton : botones) {
+        // Panel de botones con mejor espaciado
+        JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
+        panelBotones.setBackground(new Color(250, 250, 250));
+        panelBotones.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-            boton.setBackground(azul);
-            boton.setForeground(Color.WHITE);
+        // Hacer botones más grandes
+        btnAgregar.setPreferredSize(new Dimension(100, 35));
+        btnModificar.setPreferredSize(new Dimension(100, 35));
+        btnEliminar.setPreferredSize(new Dimension(100, 35));
+        btnActualizar.setPreferredSize(new Dimension(100, 35));
+        btnVolver.setPreferredSize(new Dimension(100, 35));
 
-            boton.setFont(new Font("Arial", Font.BOLD, 14));
-
-            boton.setFocusPainted(false);
-
-            boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
-            boton.setPreferredSize(new Dimension(130, 40));
-        }
-
-        // ESTILO BOTON SALIR
-        btnSalir.setBackground(rojo);
-        btnSalir.setForeground(Color.WHITE);
-
-        btnSalir.setFont(new Font("Arial", Font.BOLD, 14));
-
-        btnSalir.setFocusPainted(false);
-
-        btnSalir.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
-        btnSalir.setPreferredSize(new Dimension(130, 40));
-
-        // EVENTO BOTON SALIR
-        btnSalir.addActionListener(e -> {
-
-            FrmInicio inicio = new FrmInicio();
-            inicio.setVisible(true);
-
-            dispose();
-        });
-
-        // AGREGAR BOTONES
         panelBotones.add(btnAgregar);
         panelBotones.add(btnModificar);
+        panelBotones.add(btnEliminar);
         panelBotones.add(btnActualizar);
-        panelBotones.add(btnSalir);
+        panelBotones.add(btnVolver);
 
-        // AGREGAR COMPONENTES
-        panelPrincipal.add(scroll, BorderLayout.CENTER);
-        panelPrincipal.add(panelBotones, BorderLayout.SOUTH);
+        // Panel superior con búsqueda y contador
+        JPanel panelSuperior = new JPanel(new BorderLayout());
+        panelSuperior.setBackground(new Color(250, 250, 250));
+        panelSuperior.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        add(panelPrincipal);
+        JPanel panelBusqueda = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panelBusqueda.setBackground(new Color(250, 250, 250));
+        panelBusqueda.add(new JLabel("Buscar:"));
+        panelBusqueda.add(txtBuscar);
+        panelBusqueda.add(btnBuscar);
 
-        // INICIAR CONTROLADOR
+        lblContador = new JLabel("Total: 0 registros");
+        lblContador.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        lblContador.setForeground(new Color(30, 58, 138));
+
+        panelSuperior.add(panelBusqueda, BorderLayout.WEST);
+        panelSuperior.add(lblContador, BorderLayout.EAST);
+
+        add(panelSuperior, BorderLayout.NORTH);
+        add(new JScrollPane(tabla), BorderLayout.CENTER);
+        add(panelBotones, BorderLayout.SOUTH);
+
+        // Iniciar controlador
         new ProductoController(this);
     }
 
     public void mostrarProductos(List<Producto> lista) {
-
-        modelo.setRowCount(0);
-
+        modelo.setRowCount(0); // limpiar tabla
         for (Producto p : lista) {
-
             modelo.addRow(new Object[]{
                     p.getId(),
                     p.getCodigo(),
@@ -144,12 +159,14 @@ public class FrmProducto extends JFrame {
                     p.getStock()
             });
         }
+        lblContador.setText("Total: " + lista.size() + " registros");
+    }
+
+    public JLabel getLblContador() {
+        return lblContador;
     }
 
     public static void main(String[] args) {
-
-        SwingUtilities.invokeLater(() ->
-                new FrmProducto().setVisible(true)
-        );
+        SwingUtilities.invokeLater(() -> new FrmProducto().setVisible(true));
     }
 }

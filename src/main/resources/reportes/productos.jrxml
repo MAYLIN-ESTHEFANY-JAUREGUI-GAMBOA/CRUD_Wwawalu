@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte_Productos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="Title" forecolor="#1E3A8A" fontName="SansSerif" fontSize="26" isBold="true"/>
+	<style name="SubTitle" forecolor="#3B82F6" fontName="SansSerif" fontSize="14" isBold="false"/>
+	<style name="Column_Header" forecolor="#FFFFFF" backcolor="#1E3A8A" fontName="SansSerif" fontSize="11" isBold="true"/>
+	<style name="Detail_Even" mode="Opaque" backcolor="#F3F4F6" fontName="SansSerif" fontSize="9"/>
+	<style name="Detail_Odd" mode="Opaque" backcolor="#FFFFFF" fontName="SansSerif" fontSize="9"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT id_producto, codigo, nombre, descripcion, precio, stock FROM wwawalu.productos ORDER BY id_producto]]>
+	</queryString>
+	<field name="id_producto" class="java.lang.Integer"/>
+	<field name="codigo" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<field name="precio" class="java.math.BigDecimal"/>
+	<field name="stock" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="75" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="45" backcolor="#1E3A8A" forecolor="#1E3A8A"/>
+				<graphicElement/>
+			</rectangle>
+			<staticText>
+				<reportElement style="Title" x="10" y="5" width="535" height="35" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="22"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE PRODUCTOS]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="45" width="555" height="30" backcolor="#E0E7FF" forecolor="#C7D2FE"/>
+				<graphicElement/>
+			</rectangle>
+			<staticText>
+				<reportElement style="SubTitle" x="10" y="50" width="200" height="20" forecolor="#1E3A8A"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sistema Wwawalu]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement style="SubTitle" x="430" y="50" width="115" height="20" forecolor="#1E3A8A"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column_Header" x="0" y="0" width="35" height="35"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<topPen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<leftPen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<bottomPen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<rightPen lineWidth="1.0" lineColor="#1E3A8A"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="11"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column_Header" x="35" y="0" width="75" height="35"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<topPen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<leftPen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<bottomPen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<rightPen lineWidth="1.0" lineColor="#1E3A8A"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="11"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column_Header" x="110" y="0" width="110" height="35"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<topPen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<leftPen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<bottomPen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<rightPen lineWidth="1.0" lineColor="#1E3A8A"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="11"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column_Header" x="220" y="0" width="150" height="35"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<topPen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<leftPen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<bottomPen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<rightPen lineWidth="1.0" lineColor="#1E3A8A"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="11"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column_Header" x="370" y="0" width="70" height="35"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<topPen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<leftPen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<bottomPen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<rightPen lineWidth="1.0" lineColor="#1E3A8A"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="11"/>
+				</textElement>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column_Header" x="440" y="0" width="115" height="35"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<topPen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<leftPen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<bottomPen lineWidth="1.0" lineColor="#1E3A8A"/>
+					<rightPen lineWidth="1.0" lineColor="#1E3A8A"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="11"/>
+				</textElement>
+				<text><![CDATA[Stock]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement style="Detail_Even" x="0" y="0" width="35" height="28"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<topPen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<leftPen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<bottomPen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<rightPen lineWidth="0.5" lineColor="#D1D5DB"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail_Even" x="35" y="0" width="75" height="28"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<topPen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<leftPen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<bottomPen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<rightPen lineWidth="0.5" lineColor="#D1D5DB"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail_Even" x="110" y="0" width="110" height="28"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<topPen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<leftPen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<bottomPen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<rightPen lineWidth="0.5" lineColor="#D1D5DB"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail_Even" x="220" y="0" width="150" height="28"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<topPen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<leftPen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<bottomPen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<rightPen lineWidth="0.5" lineColor="#D1D5DB"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0.00">
+				<reportElement style="Detail_Even" x="370" y="0" width="70" height="28"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<topPen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<leftPen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<bottomPen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<rightPen lineWidth="0.5" lineColor="#D1D5DB"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail_Even" x="440" y="0" width="115" height="28"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<topPen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<leftPen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<bottomPen lineWidth="0.5" lineColor="#D1D5DB"/>
+					<rightPen lineWidth="0.5" lineColor="#D1D5DB"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{stock}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="40" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="40" backcolor="#1E3A8A" forecolor="#1E3A8A"/>
+				<graphicElement/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="10" width="300" height="20" forecolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[© 2026 Sistema Wwawalu - Reporte de Productos]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="430" y="10" width="115" height="20" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

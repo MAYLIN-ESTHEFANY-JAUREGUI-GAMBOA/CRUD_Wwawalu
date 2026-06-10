@@ -12,6 +12,7 @@ public class ProductoDAO {
     private static final String SQL_SELECT = "SELECT id_producto, codigo, nombre, descripcion, id_categoria, precio, stock FROM productos";
     private static final String SQL_INSERT = "INSERT INTO productos (codigo, nombre, descripcion, id_categoria, precio, stock) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE = "UPDATE productos SET codigo = ?, nombre = ?, descripcion = ?, id_categoria = ?, precio = ?, stock = ? WHERE id_producto = ?";
+    private static final String SQL_DELETE = "DELETE FROM productos WHERE id_producto = ?";
 
     // Listar todos
     public List<Producto> listar() {
@@ -71,6 +72,19 @@ public class ProductoDAO {
 
         } catch (SQLException e) {
             System.err.println("Error en actualizar(): " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean eliminar(int id) {
+        try (Connection con = ConexionBD.getConexion();
+             PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
+
+            ps.setInt(1, id);
+            return ps.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            System.err.println("Error en eliminar(): " + e.getMessage());
             return false;
         }
     }

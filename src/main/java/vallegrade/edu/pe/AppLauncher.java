@@ -1,12 +1,12 @@
 package vallegrade.edu.pe;
 
 
-import vallegrade.edu.pe.view.FrmProducto;
+import vallegrade.edu.pe.view.FrmPrincipal;
 
 public class AppLauncher {
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(() -> {
-            new FrmProducto().setVisible(true);
+            new FrmPrincipal().setVisible(true);
         });
     }
 }
